@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg-dark: #1e1f22;
+  --bg-card: #2b2d30;
+  --bg-input: #43454a;
+  --text-main: #dfe1e5;
+  --text-muted: #868a91;
+  --border-subtle: #43454a;
+  
+  /* JetBrains style gradients */
+  --jb-blue: #3b82f6;
+  --jb-purple: #c23bd5;
+  --jb-orange: #f59e0b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%;
+  background-color: var(--bg-dark);
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, var(--jb-blue), var(--jb-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-icon {
+  color: var(--jb-blue);
+}
+
+.btn-connect {
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-subtle);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-connect:hover {
+  background: var(--bg-input);
+}
+
+.btn-connect.connected {
+  border-color: var(--jb-blue);
+  color: var(--jb-blue);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+/* Layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 5%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+
+@media (min-width: 900px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+/* Left side */
+.hero-text .badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(194, 59, 213, 0.15);
+  color: var(--jb-purple);
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(194, 59, 213, 0.3);
+}
+
+.hero-text h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-text p {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+.mint-box {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  gap: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.mint-input {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid transparent;
+  padding: 12px 16px;
+  border-radius: 6px;
+  color: var(--text-main);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.mint-input:focus {
+  border-color: var(--jb-blue);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--jb-blue), var(--jb-purple));
+  color: white;
+  border: none;
+  padding: 0 24px;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:disabled {
+  background: var(--bg-input);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+/* Right side - The Dynamic NFT display */
+.nft-display {
+  perspective: 1000px;
+}
+
+.nft-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nft-card:hover {
+  transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+}
+
+.nft-image-area {
+  height: 250px;
+  background: linear-gradient(135deg, #1e1f22, #2b2d30);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Dynamic Gradients based on Mood */
+.mood-sunny { background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
+.mood-cloudy { background: linear-gradient(135deg, #8e9eab 0%, #eef2f3 100%); }
+.mood-rainy { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+.mood-snowy { background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); }
+.mood-night { background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); }
+
+.nft-image-area svg {
+  color: rgba(255, 255, 255, 0.9);
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));
+  z-index: 2;
+}
+
+.nft-info {
+  padding: 2rem;
+}
+
+.nft-info h3 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.nft-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Console Logs */
+.console-wrapper {
+  margin-top: 3rem;
+  background: #111112;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.console-header {
+  background: var(--bg-card);
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 10px;
+}
+
+.console-body {
+  padding: 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-main);
+  min-height: 150px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.log-line {
+  margin-bottom: 4px;
+}
+
+.log-line .prefix {
+  color: var(--jb-orange);
+  margin-right: 8px;
+}
+
+.log-success { color: #10b981; }
+.log-error { color: #ef4444; }
