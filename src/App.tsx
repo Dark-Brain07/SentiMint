@@ -1,9 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { createClient } from 'genlayer-js';
 import { studionet } from 'genlayer-js/chains';
 import { privateKeyToAccount } from 'viem/accounts';
 import { Sparkles, Cloud, Sun, CloudRain, Snowflake, Moon, Code } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+declare global {
+  interface Window {
+    ethereum: any;
+  }
+}
 
 // Replace this with the GenLayer Studio deployed contract address later
 const CONTRACT_ADDRESS = '0xcc46e0f86329bFDCFAb151512826a7C164050098'; 
@@ -175,6 +181,7 @@ function App() {
         args: [currentId],
         value: 0n,
       });
+      console.log("Sync TX Hash:", syncTx);
 
       addLog(`[Consensus] Waiting for AI Validators...`, 2000);
 
